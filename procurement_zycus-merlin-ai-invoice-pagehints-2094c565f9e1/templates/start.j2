@@ -1,0 +1,12 @@
+#!/bin/bash
+mkdir -p /U01/Logs/Merlin-AI-Invoice-PageHints/
+STARTUP_LOG_FILE=/U01/Logs/Merlin-AI-Invoice-PageHints/startup.log
+
+if [[ ! -e  $STARTUP_LOG_FILE ]]; 
+then
+    touch $STARTUP_LOG_FILE
+fi
+
+
+bash /U01/Merlin-AI-Invoice-PageHints/bin/start_gunicorn.sh
+echo "*********Gunicorn startup done*************************************************"

@@ -1,0 +1,36 @@
+{
+	"scheduler": {
+		"apscheduler.executors.default": {
+			"type": "threadpool",
+			"max_workers": "3"
+		},
+		"apscheduler.job_defaults.max_instances": "1",
+		"apscheduler.timezone": "UTC"
+	},
+	"jobList":
+		[
+			{
+				"jobName": "MERLIN_AI_PAGEHINTS_HIGH_BAND",
+				"cronExpSeconds": "0,10,20,30,40,50,59",
+				"seconds" : 1,
+				"max_instances": 1,
+				"useProcessPool": true,
+				"pollingBatchSize": 1,
+				"polledTimeoutInMins": 10,
+				"purposetype": "MERLIN_AI_PAGEHINTS_HIGH_BAND"
+				},
+			{
+				"jobName": "MERLIN_AI_PAGEHINTS_LOW_BAND",
+				"cronExpSeconds": "1,6,11,16,21,26,31,36,41,46,51,56",
+				"seconds" : 1,
+				"max_instances": 1,
+				"useProcessPool": true,
+				"pollingBatchSize": 2,
+				"polledTimeoutInMins": 3,
+				"purposetype": "MERLIN_AI_PAGEHINTS_LOW_BAND"
+				}	
+					
+			
+	
+		]
+}

@@ -1,0 +1,16 @@
+FROM continuumio/miniconda3:23.5.2-0-alpine
+
+# verify if below packages needed
+# apk add g++ ffmpeg libsm6 libxext6 poppler-utils
+
+COPY ./ ./
+
+RUN conda env create -f /code/environment.yml && conda clean -afy 
+ENV PYTHONUNBUFFERED=1
+ENV PATH=/opt/conda/envs/env_cascade_tabnet/bin:${PATH}
+
+RUN chmod +x /templates/setup.sh
+RUN /templates/setup.sh
+RUN /opt/conda/bin/activate env_cascade_tabnet
+RUN chmod +x /templates/run.sh
+CMD ["/templates/run.sh"]

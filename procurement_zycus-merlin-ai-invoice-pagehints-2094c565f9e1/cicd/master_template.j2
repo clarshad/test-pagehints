@@ -1,0 +1,33 @@
+#- endpoint: consul
+#  metadata:
+#    product: Merlin-AI-Invoice-PageHints
+#    path: Merlin-AI-Invoice-PageHints
+#  data:
+
+- endpoint: template
+  metadata:
+    product: Merlin-AI-Invoice-PageHints
+    node_type: service_node
+    template_path: /tmp/builds/templates/model.j2
+    destination_path: /tmp/models/service_models_var.yml
+  data:
+    model_name: "model_PageHints"
+    model_version: {{ MERLIN_AI_INVOICE_PAGEHINTS_MODEL_VERSION }}
+- endpoint: template
+  metadata:
+    product: Merlin-AI-Invoice-PageHints
+    node_type: service_node
+    template_path: /tmp/builds/config/logging.conf
+    destination_path: /U01/Merlin-AI-Invoice-PageHints/config/logging.conf
+  data:
+    log_level: {{ MERLIN_AI_INVOICE_PAGEHINTS_LOG_LEVEL }}
+- endpoint: template
+  metadata:
+    product: Merlin-AI-Invoice-PageHints
+    node_type: service_node
+    template_path: /tmp/builds/config/config_page_hints.INI
+    destination_path: /U01/Merlin-AI-Invoice-PageHints/config/config_page_hints.INI
+  data:
+    app_haproxy_ip: {{ MERLIN_APP_HA_PROXY_IP }}
+    USE_IN_MEMORY: {{ USE_IN_MEMORY }}
+

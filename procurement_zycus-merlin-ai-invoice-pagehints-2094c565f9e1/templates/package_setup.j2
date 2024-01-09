@@ -1,0 +1,7 @@
+#!/bin/bash
+#Merlin einvoice pagehints
+set -e
+exec >  >(tee /U01/Merlin-AI-Invoice-PageHints/bin/package_setup.log )  2>&1
+cd /U01/Merlin-AI-Invoice-PageHints/code
+#/U01/Anaconda3/bin/conda env update -f environment.yml
+/U01/Anaconda3/bin/conda env create --file environment.yml --force

@@ -1,0 +1,2 @@
+pkill -f gunicorn
+kill -9 `ps -eaf | grep -i python | grep -v grep | grep -v '/usr/bin'| awk '{print $2}'`

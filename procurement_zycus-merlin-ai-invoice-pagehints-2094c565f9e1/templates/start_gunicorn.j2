@@ -1,0 +1,9 @@
+#!/bin/bash
+source activate env_cascade_tabnet
+cd /U01/Merlin-AI-Invoice-PageHints/code
+nohup /U01/Anaconda3/envs/env_cascade_tabnet/bin/gunicorn run:app -w 2 --threads 2 --max-requests 10 --max-requests-jitter 5 -t 600 -b 0.0.0.0:6001 --preload
+
+#> api_nohup.log &
+echo $! > /U01/Merlin-AI-Invoice-PageHints/bin/pid.file &
+sleep 30
+echo "Merlin-AI-Invoice-PageHints Started Successfully" > /U01/Merlin-AI-Invoice-PageHints/bin/Merlin-AI-Invoice-PageHints.log

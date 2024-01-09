@@ -1,0 +1,14 @@
+{
+  "service_node": {
+    "/tmp/builds/code/": "/U01/Merlin-AI-Invoice-PageHints/code/",
+    "/tmp/builds/templates/start.j2": "/U01/Merlin-AI-Invoice-PageHints/bin/start.sh",
+    "/tmp/builds/templates/stop.j2": "/U01/Merlin-AI-Invoice-PageHints/bin/stop.sh",
+    "/tmp/builds/templates/package_setup.j2": "/U01/Merlin-AI-Invoice-PageHints/bin/package_setup.sh",
+    "/tmp/builds/templates/setup.j2": "/U01/Merlin-AI-Invoice-PageHints/bin/setup.sh",
+    "/tmp/builds/templates/start_gunicorn.j2": "/U01/Merlin-AI-Invoice-PageHints/bin/start_gunicorn.sh",
+    "/tmp/builds/templates/stop_gunicorn.j2": "/U01/Merlin-AI-Invoice-PageHints/bin/stop_gunicorn.sh",
+    "/tmp/builds/config/": "/U01/Merlin-AI-Invoice-PageHints/config/",
+    "/tmp/builds/buildVersion.txt": "/U01/Merlin-AI-Invoice-PageHints/buildVersion.txt",
+    "/tmp/builds/releaseVersion.properties": "/U01/Merlin-AI-Invoice-PageHints/releaseVersion.properties"
+  }
+}

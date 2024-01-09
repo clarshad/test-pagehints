@@ -1,0 +1,57 @@
+job "{{ product }}"
+{
+  region = "global"
+  datacenters = ["QC"]
+  type = "service"
+
+  group "{{ product }}-service_node" {
+    constraint {
+      attribute = "${meta.product}"
+      value = "{{ product }}"
+    }
+    constraint {
+      attribute = "${meta.node_type}"
+      value = "service_node"
+    }
+    constraint {
+      attribute = "${meta.release_version}"
+      value = "RELEASE_VERSION"
+    }
+    count = 2
+
+    update {
+      min_healthy_time = "2m"
+      healthy_deadline = "18m"
+      progress_deadline = "23m"
+    }
+
+    task "{{ product }}-service" {
+      driver = "raw_exec"
+      config {
+        command = "su"
+        args = ["-c", "/U01/{{ product }}/bin/start.sh  2>&1 | tee -a /U01/Logs/{{ product }}/startup.log", "-", "webtech"]
+      }
+
+      service {
+        name = "{{ product_service_name }}"
+        port = "service_port"
+        tags = ["{{ product }}", "service_node", "live"]
+
+        check {
+          type = "http"
+          path = "{{ healthcheck_endpoint }}"
+          interval = "10s"
+          timeout = "15s"
+        }
+      }
+
+      resources {
+        network {
+          port "service_port" {
+            static = {{ server_port }}
+          }
+        }
+      }
+    }
+  }
+}

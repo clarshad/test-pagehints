@@ -1,0 +1,92 @@
+{
+    "packer": {
+        "aws": {
+            "autodelete_policy": "disabled", 
+            "instance_type": "t3a.medium", 
+            "security_groups": [
+                "sg-ac0bead4", 
+                "sg-cd0decb5", 
+                "sg-0611f07e"
+            ], 
+            "source_ami_id": "ami-0f784b3e9a81d79cc", 
+            "ssh_username": "webtech", 
+            "subnet_id": "subnet-037fe2735d51a1765", 
+            "u01_device_name": "/dev/sdb", 
+            "volume_size": 35
+        }, 
+        "vmware": {
+            "cpu_cores": 2, 
+            "memory": 6144, 
+            "source_template_name": "Ubuntu_18.04.2_GOCD", 
+            "datacenter": "ZYCUS-MUM-DC", 
+            "host": "inmuzp-esx-pr01.zycus.net", 
+            "cluster": "ZYCUS-MUM-CLUSTER01", 
+            "datastore": "INMUZP_OLDN1SAS_TMPLT_DS01"
+        }
+    }, 
+    "QC": {
+        "vmware": {
+            "cpu_cores": {{ qc_cpu_cores }}, 
+            "memory": {{ qc_memory }}
+        }
+    }, 
+    "QM": {
+        "vmware": {
+            "cpu_cores": {{ qm_cpu_cores }}, 
+            "memory": {{ qm_memory }}
+        }
+    }, 
+    "RM": {
+        "vmware": {
+            "cpu_cores": {{ rm_cpu_cores }}, 
+            "memory": {{ rm_memory }}
+        }
+    }, 
+    "PT": {
+        "vmware": {
+            "cpu_cores": {{ pt_cpu_cores }}, 
+            "memory": {{ pt_memory }}
+        }
+    }, 
+    "ST": {
+        "aws": {
+            "instance_type": "{{ st_aws_instance_type }}"
+        }
+    }, 
+    "STUS": {
+        "vmware": {
+            "cpu_cores": {{ stus_cpu_cores }}, 
+            "memory": {{ stus_memory }}
+        }
+    }, 
+    "PRAU": {
+        "aws": {
+            "instance_type": "{{ prau_aws_instance_type }}"
+        }
+    }, 
+    "PRUK": {
+        "aws": {
+            "instance_type": "{{ pruk_aws_instance_type }}"
+        }
+    }, 
+    "PRSG": {
+        "aws": {
+            "instance_type": "{{ prsg_aws_instance_type }}"
+        }
+    }, 
+    "PRUS": {
+        "vmware": {
+            "cpu_cores": {{ prus_cpu_cores }}, 
+            "memory": {{ prus_memory }}
+        }
+    }, 
+    "node_count": {
+        "service_node": 2
+    }, 
+    "meta": {
+        "product_code": "MER",
+        "parent_product": "Merlin",
+        "owner_id": "merlin_engg@zycus.com",
+        "disks": 2
+    }
+}

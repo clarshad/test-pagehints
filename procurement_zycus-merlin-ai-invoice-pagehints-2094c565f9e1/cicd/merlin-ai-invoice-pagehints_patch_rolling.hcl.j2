@@ -1,0 +1,59 @@
+job "{{ product }}"
+{
+  region = "global"
+  datacenters = ["QC"]
+  type = "service"
+
+  group "{{ product }}-service_node" {
+    constraint {
+      attribute = "${meta.product}"
+      value = "{{ product }}"
+    }
+    constraint {
+      attribute = "${meta.node_type}"
+      value = "service_node"
+    }
+    constraint {
+      attribute = "${meta.release_version}"
+      value = "RELEASE_VERSION"
+    }
+    count = 2
+
+    update {
+      max_parallel     = 1
+      min_healthy_time = "2m"
+      healthy_deadline = "20m"
+      progress_deadline = "25m"
+    }
+
+    task "{{ product }}-service" {
+      driver = "raw_exec"
+      shutdown_delay="60s"
+      config {
+        command = "su"
+        args = ["-c", "python /U01/ERT/deploy.py ${NOMAD_TASK_DIR} && su -c \"/U01/{{ product }}/bin/start.sh  2>&1 | tee -a /U01/Logs/{{ product }}/startup.log\" - webtech"]
+      }
+
+      service {
+        name = "{{ product_service_name }}"
+        port = "service_port"
+        tags = ["{{ product }}", "service_node", "live"]
+
+        check {
+          type = "http"
+          path = "{{ healthcheck_endpoint }}"
+          interval = "10s"
+          timeout = "15s"
+        }
+      }
+
+      resources {
+        network {
+          port "service_port" {
+            static = {{ server_port }}
+          }
+        }
+      }
+    }
+  }
+}

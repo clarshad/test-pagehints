@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+exec >  >(tee /U01/Merlin-AI-Invoice-PageHints/bin/setup.log )  2>&1
+source activate env_cascade_tabnet
+echo "source activated"
+which pip
+/U01/Anaconda3/envs/env_cascade_tabnet/bin/pip install torch==1.7.0+cu110 torchvision==0.8.1+cu110 torchaudio===0.7.0 -f https://download.pytorch.org/whl/torch_stable.html
+/U01/Anaconda3/envs/env_cascade_tabnet/bin/pip install mmcv-full==1.4.0 -f https://download.openmmlab.com/mmcv/dist/cu110/torch1.7.0/index.html

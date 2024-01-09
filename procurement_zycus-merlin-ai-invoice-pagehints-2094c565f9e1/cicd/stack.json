@@ -1,0 +1,8 @@
+{
+  "service_node": {
+    "u01-folders": {"u01_default_jdk": "jdk1.8.0_111"},
+    "anaconda": {"conda_artifact": "Anaconda3", "conda_version": "2019.03"},
+    "packages": {"pkg_list": ["gcc", "python-opencv", "tensorflow-model-server=2.1.0", "libpoppler73=0.62.0-2ubuntu2.10", "poppler-utils"]},
+    "shell": {"post": "su - webtech -c /U01/Merlin-AI-Invoice-PageHints/bin/package_setup.sh"}
+  }
+}

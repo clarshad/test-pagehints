@@ -1,0 +1,43 @@
+#All Platform Independent variable to be filled in this file.
+---
+healthcheck_endpoint: "/merlin/merlin-ai-invoice-pagehints/pagehints-gunicorn/healthCheck"
+product_service_name: "Merlin-AI-Invoice-PageHints-service-node"
+server_port: "6001"
+qc_cpu_cores: "2"
+qc_memory: "6144"
+qm_cpu_cores: "2"
+qm_memory: "6144"
+rm_cpu_cores: "2"
+rm_memory: "6144"
+pt_cpu_cores: "2"
+pt_memory: "6144"
+st_aws_instance_type: "t3a.medium"
+stus_cpu_cores: "2"
+stus_memory: "6144"
+prau_aws_instance_type: "t3a.medium"
+pruk_aws_instance_type: "t3a.medium"
+prsg_aws_instance_type: "t3a.medium"
+prus_cpu_cores: "2"
+prus_memory: "6144"
+#tfserving_rest_api_port: "9202"
+
+#pipeline configs
+build_repos: |
+            {
+                           "repo_name": "{{ product_code_repo }}",
+                           "repo_url": "git@bitbucket.org:procurement_zycus/{{ product_code_repo }}.git",
+                           "branch" : "{{ product_code_repo_branch }}",
+                           "destination" : "scripts"
+                       }
+git_pipeline_repo: "{{ product|lower }}"
+release_version_release: "21.01.1.0"
+release_version_patch: "21.03.1.0"
+build_tool: "merlin-ai"
+build_agent: "EA_Merlin_AI_Java"
+nomad_service: "service"
+nfs_required: "no"
+copy_logs_required: "no"
+auto_deploy: "no"
+os: "ubuntu"
+model_push: "yes"
+setup_execution: "yes"
